@@ -1,0 +1,22 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "RabbitMQConnection": "amqp://<username>:<password>@<host>:5672/<virtual-host>",
+    "RabbitMQ__Host": "<host>",
+    "RabbitMQ__Port": "5672",
+    "RabbitMQ__Username": "<username>",
+    "RabbitMQ__Password": "<password>",
+    "RabbitMQ__VirtualHost": "<virtual-host>",
+    "Queues__ProductReceived": "q.hf.int001.products.dev.received",
+    "Queues__ProductValid": "q.hf.int001.products.dev.valid",
+    "Queues__ProductInvalid": "q.hf.int001.products.dev.invalid",
+    "ProductReceivedQueueName": "q.hf.int001.products.dev.received",
+    "ProductValidQueueName": "q.hf.int001.products.dev.valid",
+    "Exchanges__ProductValidationResults": "x.hf.int001.products.dev",
+    "RoutingKeys__ProductValid": "product.valid.v1",
+    "RoutingKeys__ProductInvalid": "product.invalid.v1",
+    "TargetApi__BaseUrl": "http://127.0.0.1:7072/"
+  }
+}

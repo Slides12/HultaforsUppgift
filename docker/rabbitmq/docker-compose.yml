@@ -1,0 +1,24 @@
+name: cloud-integration-assignment-rabbitmq
+
+services:
+  rabbitmq:
+    image: rabbitmq:4.3.4-management
+    hostname: cloud-integration-rabbitmq
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_ADMIN_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_ADMIN_PASSWORD}
+      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST}
+    ports:
+      - "${RABBITMQ_BIND_IP}:5672:5672"
+      - "${RABBITMQ_BIND_IP}:15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+
+volumes:
+  rabbitmq_data:

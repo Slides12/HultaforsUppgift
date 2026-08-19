@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:simpleType name="nonEmptyString">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="supportedCurrency">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SEK" />
+      <xs:enumeration value="EUR" />
+      <xs:enumeration value="USD" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="positiveDecimal">
+    <xs:restriction base="xs:decimal">
+      <xs:minExclusive value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="ProductDelivery">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="CorrelationId" type="nonEmptyString" />
+        <xs:element name="ReceivedAtUtc" type="xs:dateTime" />
+        <xs:element name="ProcessedAtUtc" type="xs:dateTime" />
+        <xs:element name="Product">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" type="nonEmptyString" />
+              <xs:element name="DisplayName" type="nonEmptyString" />
+              <xs:element name="UnitPrice">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Amount" type="positiveDecimal" />
+                    <xs:element name="Currency" type="supportedCurrency" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="AvailableQuantity" type="xs:nonNegativeInteger" />
+              <xs:element name="ProductCategory" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="schemaVersion" type="xs:string" use="required" fixed="1.0" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
